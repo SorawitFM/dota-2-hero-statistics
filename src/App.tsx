@@ -1,16 +1,26 @@
 import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomePage from './page/home';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <HomePage />
+      ),
+    },
+  ]);
 
   return (
-    <>
-      <h1>Hello World!</h1>
-      <h1>Hello World!</h1>
-      <button className='btn btn-success'>SSSS</button>
-    </>
+    <div className='bg-warning'>
+      <RouterProvider router={router} />
+    </div>
   )
 }
 

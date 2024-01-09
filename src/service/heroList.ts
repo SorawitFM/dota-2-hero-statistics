@@ -4,14 +4,14 @@ import { handleResponse, IResponse } from '../utils/handleResponse'
 import { IHeroList } from '@/interface/heroList'
 
 
-interface IHeroList extends IResponse {
+interface IHeroListResponse extends IResponse {
     data?: IHeroList[]
 }
 
 
 
 export const heroListServie = {
-    getHeroList: async (): Promise<IResponse> => {
+    getHeroList: async (): Promise<IHeroListResponse> => {
         try {
             const response = await axios.get(`https://api.opendota.com/api/heroStats`)
             //console.log(response)
@@ -19,6 +19,5 @@ export const heroListServie = {
         } catch (error: any) {
             return handleResponse.error(error)
         }
-
     }
 }

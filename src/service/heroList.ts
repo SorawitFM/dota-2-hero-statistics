@@ -1,6 +1,12 @@
 import axios from 'axios'
 import React from 'react'
-import { handleResponse } from '../utils/handleResponse'
+import { handleResponse, IResponse } from '../utils/handleResponse'
+import { IHeroList } from '@/interface/heroList'
+
+
+interface IHeroList extends IResponse {
+    data?: IHeroList[]
+}
 
 
 

@@ -23,14 +23,14 @@ type heroType = {
 type useHeroListStoreType = {
     hero: heroType,
     fetchHero: heroType,
-    setHeroList: (value: heroType) => void, //ถ้าเรียบfunction ก็เหมือน setPokemonList(value) แล้วทำ set({ pokemon: value })
+    setHeroList: (value: heroType) => void, //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
     setFetchHeroList: (value: heroType) => void,
     clearHero: () => void,
 }
 
 export const useHeroListStore = create<useHeroListStoreType>((set) => ({
     ...initStore, //ค่าเริ่มต้น
-    setHeroList: (value: heroType) => set({ hero: value }), //ถ้าเรียบfunction ก็เหมือน setPokemonList(value) แล้วทำ set({ pokemon: value })
+    setHeroList: (value: heroType) => set({ hero: value }), //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
     setFetchHeroList: (value: heroType) => set({ fetchHero: value }),
     clearHero: () => set({ ...initStore })
 }))

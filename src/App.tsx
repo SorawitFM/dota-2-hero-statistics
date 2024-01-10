@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
+
+import './index.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from './page/home';
 
@@ -18,7 +18,7 @@ function App() {
   ]);
 
   return (
-    <div className='bg-warning'>
+    <div>
       <RouterProvider router={router} />
     </div>
   )

@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios"
 
-interface IResponse {
+export interface IResponse {
     status: number | undefined
     error?: AxiosError<AxiosResponse<AxiosResponse<any, any>, any>>
     | AxiosResponse<any, any>

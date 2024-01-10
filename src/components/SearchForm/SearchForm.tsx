@@ -2,53 +2,57 @@ const SearchForm = () => {
 
     return (
         <div>
-            <form className="grid text-center bg-warning col">
+            <form className="grid text-center bg-warning col m-3 p-3">
                 <div className="row">
                     {/* Dropdown 1 */}
                     <div className="col">
-                        <div className="dropdown" data-bs-theme="light">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight1" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown 1
-                            </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButtonLight1">
-                                <li><a className="dropdown-item active" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                <li><a className="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                        </div>
+                        <label className="form-label"></label>
+                        <select className="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
 
                     {/* Dropdown 2 */}
                     <div className="col">
-                        <div className="dropdown" data-bs-theme="light">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown 2
-                            </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButtonLight2">
-                                <li><a className="dropdown-item active" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                <li><a className="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                        </div>
+                        <label className="form-label"></label>
+                        <select className="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                     </div>
 
                     {/* Dropdown 3 */}
                     <div className="col">
-                        <div className="dropdown" data-bs-theme="light">
-                            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonLight2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown 2
-                            </button>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButtonLight2">
-                                <li><a className="dropdown-item active" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                <li><a className="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
+                        <label className="form-label"></label>
+                        <select className="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    {/* Dropdown 4 */}
+                    <div className="col">
+                        <label className="form-label"></label>
+                        <select className="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    {/* Search */}
+                    <div className="col">
+                        <div className="mb-3">
+                            <label htmlFor="exampleFormControlInput1" className="form-label"></label>
+                            <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search Hero's name" />
                         </div>
                     </div>
                 </div>

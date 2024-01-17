@@ -11,11 +11,11 @@ const SearchForm = () => {
                 <div className="row">
                     {/* Dropdown 1 */}
                     <div className="col">
-                        <label className="form-label">Ranks</label>
-                        <select {...fieldRank}
+                        <label className="form-label">Sort by</label>
+                        <select {...fieldSort}
                             className="form-select" aria-label="Default select example">
-                            {rankList.map((item, index) => {
-                                return <option key={`rankList-key-${index}`} value={index}>{item.name}</option>
+                            {sortList.map((item, index) => {
+                                return <option key={`sortList-key-${index}`} value={index}>{item}</option>
                             })}
                         </select>
                     </div>
@@ -44,14 +44,15 @@ const SearchForm = () => {
 
                     {/* Dropdown 4 */}
                     <div className="col">
-                        <label className="form-label">Sort by</label>
-                        <select {...fieldSort}
+                        <label className="form-label">Ranks</label>
+                        <select {...fieldRank}
                             className="form-select" aria-label="Default select example">
-                            {sortList.map((item, index) => {
-                                return <option key={`sortList-key-${index}`} value={index}>{item}</option>
+                            {rankList.map((item, index) => {
+                                return <option key={`rankList-key-${index}`} value={index}>{item.name}</option>
                             })}
                         </select>
                     </div>
+
 
                     {/* Search */}
                     <div className="col">

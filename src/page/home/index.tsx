@@ -11,17 +11,16 @@ const HomePage = () => {
     <div>
       <SearchForm />
 
-
-
       <div className="container text-center">
         <div className="row">
           <div className="col">
             {hero.data?.map((item) => {
-              // console.log('check-image', item.img); // ดูค่า item.Image ใน console log
               return (
-                <HeroCard image={item.img}>
-                  <h5 className="card-title">Card title</h5>
-                </HeroCard>
+                <HeroCard
+                  image={item.img}
+                  name={item.localized_name}
+                />
+
               );
             })}
           </div>

@@ -126,27 +126,27 @@ const useSearchForm = () => {
     const sortBy = (data: IHeroListUpdate[], sort: number, rank: number) => {
         switch (sortList[sort]) {
             case 'Name':
-                return data.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0)
+                return data.sort((a, b) => a.localized_name > b.localized_name ? 1 : b.localized_name > a.localized_name ? -1 : 0)
             case 'Win rate':
                 switch (rankList[rank].name) {
                     case 'Herald':
-                        return data.sort((a, b) => a['1_win'] / a['1_pick'] - b['1_win'] / b['1_pick'])
+                        return data.sort((b, a) => a['1_win'] / a['1_pick'] - b['1_win'] / b['1_pick'])
                     case 'Guardian':
-                        return data.sort((a, b) => a['2_win'] / a['2_pick'] - b['2_win'] / b['2_pick'])
+                        return data.sort((b, a) => a['2_win'] / a['2_pick'] - b['2_win'] / b['2_pick'])
                     case 'Crusader':
-                        return data.sort((a, b) => a['3_win'] / a['3_pick'] - b['3_win'] / b['3_pick'])
+                        return data.sort((b, a) => a['3_win'] / a['3_pick'] - b['3_win'] / b['3_pick'])
                     case 'Archon':
-                        return data.sort((a, b) => a['4_win'] / a['4_pick'] - b['4_win'] / b['4_pick'])
+                        return data.sort((b, a) => a['4_win'] / a['4_pick'] - b['4_win'] / b['4_pick'])
                     case 'Legend':
-                        return data.sort((a, b) => a['5_win'] / a['5_pick'] - b['5_win'] / b['5_pick'])
+                        return data.sort((b, a) => a['5_win'] / a['5_pick'] - b['5_win'] / b['5_pick'])
                     case 'Ancient':
-                        return data.sort((a, b) => a['6_win'] / a['6_pick'] - b['6_win'] / b['6_pick'])
+                        return data.sort((b, a) => a['6_win'] / a['6_pick'] - b['6_win'] / b['6_pick'])
                     case 'Divine':
-                        return data.sort((a, b) => a['7_win'] / a['7_pick'] - b['7_win'] / b['7_pick'])
+                        return data.sort((b, a) => a['7_win'] / a['7_pick'] - b['7_win'] / b['7_pick'])
                     case 'Immortal':
-                        return data.sort((a, b) => a['8_win'] / a['8_pick'] - b['8_win'] / b['8_pick'])
+                        return data.sort((b, a) => a['8_win'] / a['8_pick'] - b['8_win'] / b['8_pick'])
                     case 'Average':
-                        return data.sort((a, b) =>
+                        return data.sort((b, a) =>
                             + a['1_win'] / a['1_pick']
                             + a['2_win'] / a['2_pick']
                             + a['3_win'] / a['3_pick']
@@ -165,7 +165,7 @@ const useSearchForm = () => {
                             - b['8_win'] / b['8_pick']
                         )
                     default:
-                        return data.sort((a, b) =>
+                        return data.sort((b, a) =>
                             + a['1_win'] / a['1_pick']
                             + a['2_win'] / a['2_pick']
                             + a['3_win'] / a['3_pick']
@@ -187,23 +187,23 @@ const useSearchForm = () => {
             case 'Pick':
                 switch (rankList[rank].name) {
                     case 'Herald':
-                        return data.sort((a, b) => a['1_pick'] - b['1_pick'])
+                        return data.sort((b, a) => a['1_pick'] - b['1_pick'])
                     case 'Guardian':
-                        return data.sort((a, b) => a['2_pick'] - b['2_pick'])
+                        return data.sort((b, a) => a['2_pick'] - b['2_pick'])
                     case 'Crusader':
-                        return data.sort((a, b) => a['3_pick'] - b['3_pick'])
+                        return data.sort((b, a) => a['3_pick'] - b['3_pick'])
                     case 'Archon':
-                        return data.sort((a, b) => a['4_pick'] - b['4_pick'])
+                        return data.sort((b, a) => a['4_pick'] - b['4_pick'])
                     case 'Legend':
-                        return data.sort((a, b) => a['5_pick'] - b['5_pick'])
+                        return data.sort((b, a) => a['5_pick'] - b['5_pick'])
                     case 'Ancient':
-                        return data.sort((a, b) => a['6_pick'] - b['6_pick'])
+                        return data.sort((b, a) => a['6_pick'] - b['6_pick'])
                     case 'Divine':
-                        return data.sort((a, b) => a['7_pick'] - b['7_pick'])
+                        return data.sort((b, a) => a['7_pick'] - b['7_pick'])
                     case 'Immortal':
-                        return data.sort((a, b) => a['8_pick'] - b['8_pick'])
+                        return data.sort((b, a) => a['8_pick'] - b['8_pick'])
                     case 'Average':
-                        return data.sort((a, b) =>
+                        return data.sort((b, a) =>
                             + a['1_pick']
                             + a['2_pick']
                             + a['3_pick']
@@ -222,7 +222,7 @@ const useSearchForm = () => {
                             - b['8_pick']
                         )
                     default:
-                        return data.sort((a, b) =>
+                        return data.sort((b, a) =>
                             + a['1_pick']
                             + a['2_pick']
                             + a['3_pick']

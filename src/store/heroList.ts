@@ -1,4 +1,4 @@
-import { IHeroList } from '@/interface/heroList'
+import { IHeroList, IHeroListUpdate } from '@/interface/heroList'
 import { create } from 'zustand'
 
 const initStore = { //ค่าเริ่มต้น
@@ -20,17 +20,23 @@ type heroType = {
     error: null | any
 }
 
+type heroTypeUpdate = {
+    data: IHeroListUpdate[],
+    loading: boolean,
+    error: null | any
+}
+
 type useHeroListStoreType = {
-    hero: heroType,
-    fetchHero: heroType,
-    setHeroList: (value: heroType) => void, //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
-    setFetchHeroList: (value: heroType) => void,
+    hero: heroTypeUpdate, // ต้องกำหนด Type ที่เพิ่มเข้าไปด้วย
+    fetchHero: heroTypeUpdate, // ต้องกำหนด Type ตาม API
+    setHeroList: (value: heroTypeUpdate) => void, //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
+    setFetchHeroList: (value: heroTypeUpdate) => void,
     clearHero: () => void,
 }
 
 export const useHeroListStore = create<useHeroListStoreType>((set) => ({
     ...initStore, //ค่าเริ่มต้น
-    setHeroList: (value: heroType) => set({ hero: value }), //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
-    setFetchHeroList: (value: heroType) => set({ fetchHero: value }),
+    setHeroList: (value: heroTypeUpdate) => set({ hero: value }), //ถ้าเรียบfunction ก็เหมือน setHeroList(value) แล้วทำ set({ hero: value })
+    setFetchHeroList: (value: heroTypeUpdate) => set({ fetchHero: value }),
     clearHero: () => set({ ...initStore })
 }))

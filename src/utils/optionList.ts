@@ -1,6 +1,6 @@
 export const rankList = [
     {
-        name: "All",
+        name: "Average",
         MMR: "All",
         icon: ""
     },
@@ -46,9 +46,17 @@ export const rankList = [
     },
 ]
 
-export const attributeList = [
+export const attributeList = ["All Attribute", "Strength", "Agility", "Intelligence", "Universal"]
+
+export const roleList = ["All Role", "Carry", "Support", "Nuker", "Disabler", "Durable", "Escape", "Pusher", "Initiator"]
+
+export const sortList = ["Name", "Win rate", "Pick"]
+
+
+
+export const attributeIcon = [
     {
-        name: "All",
+        name: "All Attribute",
         icon: ""
     },
     {
@@ -68,5 +76,3 @@ export const attributeList = [
         icon: "https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1c/Universal_attribute_symbol.png/revision/latest/scale-to-width-down/20?cb=20230501030320"
     },
 ]
-
-export const roleList = ["Carry", "Support", "Nuker", "Disabler", "Durable", "Escape", "Pusher", "Initiator"]

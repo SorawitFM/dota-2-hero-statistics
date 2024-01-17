@@ -1,0 +1,1 @@
+export const HERO_IMAGE_URL = "https://cdn.cloudflare.steamstatic.com"

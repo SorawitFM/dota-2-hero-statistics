@@ -1,6 +1,6 @@
 export const rankList = [
     {
-        name: "Average",
+        name: "All Ranks",
         MMR: "All",
         icon: ""
     },

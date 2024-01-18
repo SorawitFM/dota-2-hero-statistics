@@ -19,6 +19,8 @@ const HomePage = () => {
                 <HeroCard
                   image={item.img}
                   name={item.localized_name}
+                  winRate={item.winRate}
+                  pickValue={item.pickValue}
                 />
 
               );

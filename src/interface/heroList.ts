@@ -142,4 +142,8 @@ export interface IHeroListUpdate {
     pickDivine: number
     pickImmortal: number
     pickTotal: number
+
+    winRate: number
+    pickValue: number
+
 }

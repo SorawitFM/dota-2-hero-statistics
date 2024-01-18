@@ -11,8 +11,8 @@ const SearchForm = () => {
                 <div className="row">
                     {/* Dropdown 1 */}
                     <div className="col">
-                        <label className="form-label">Sort by</label>
-                        <select {...fieldSort}
+                        <label className="form-label" htmlFor="sort">Sort by</label>
+                        <select {...fieldSort} id="sort"
                             className="form-select" aria-label="Default select example">
                             {sortList.map((item, index) => {
                                 return <option key={`sortList-key-${index}`} value={index}>{item}</option>
@@ -22,8 +22,8 @@ const SearchForm = () => {
 
                     {/* Dropdown 2 */}
                     <div className="col">
-                        <label className="form-label">Attributes</label>
-                        <select {...fieldAttribute}
+                        <label className="form-label" htmlFor="attribute">Attributes</label>
+                        <select {...fieldAttribute} id="attribute"
                             className="form-select" aria-label="Default select example">
                             {attributeList.map((item, index) => {
                                 return <option key={`attributeList-key-${index}`} value={index}>{item}</option>
@@ -33,8 +33,8 @@ const SearchForm = () => {
 
                     {/* Dropdown 3 */}
                     <div className="col">
-                        <label className="form-label">Roles</label>
-                        <select {...fieldRole}
+                        <label className="form-label" htmlFor="role">Roles</label>
+                        <select {...fieldRole} id="role"
                             className="form-select" aria-label="Default select example">
                             {roleList.map((item, index) => {
                                 return <option key={`roleList-key-${index}`} value={index}>{item}</option>
@@ -44,8 +44,8 @@ const SearchForm = () => {
 
                     {/* Dropdown 4 */}
                     <div className="col">
-                        <label className="form-label">Ranks</label>
-                        <select {...fieldRank}
+                        <label className="form-label" htmlFor="rank">Ranks</label>
+                        <select {...fieldRank} id="rank"
                             className="form-select" aria-label="Default select example">
                             {rankList.map((item, index) => {
                                 return <option key={`rankList-key-${index}`} value={index}>{item.name}</option>
@@ -57,9 +57,9 @@ const SearchForm = () => {
                     {/* Search */}
                     <div className="col">
                         <div className="mb-3">
-                            <label htmlFor="exampleFormControlInput1" className="form-label">Search</label>
+                            <label htmlFor="keyword" className="form-label">Search</label>
                             <input {...fieldKeyword}
-                                type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search Hero's name" />
+                                type="email" className="form-control" id="keyword" placeholder="Search Hero's name" />
                         </div>
                     </div>
                 </div>

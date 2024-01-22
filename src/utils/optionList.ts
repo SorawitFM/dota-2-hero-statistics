@@ -50,7 +50,7 @@ export const attributeList = ["All Attribute", "Strength", "Agility", "Intellige
 
 export const roleList = ["All Role", "Carry", "Support", "Nuker", "Disabler", "Durable", "Escape", "Pusher", "Initiator"]
 
-export const sortList = ["Name", "Win rate", "Pick"]
+export const sortList = ["Name", "Win Rate", "Matches Played"]
 
 
 

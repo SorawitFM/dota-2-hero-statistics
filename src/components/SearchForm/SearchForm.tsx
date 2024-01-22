@@ -6,7 +6,7 @@ const SearchForm = () => {
     const { fieldKeyword, fieldRank, fieldAttribute, fieldRole, fieldSort } = useSearchForm()
 
     return (
-        <div className="bg-warning col m-3 p-3">
+        <div className="bg-warning col mb-3 p-3">
             <form className="grid text-center">
                 <div className="row">
                     {/* Dropdown 1 */}

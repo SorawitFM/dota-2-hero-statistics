@@ -4,7 +4,7 @@ import { heroListServie } from '@/service/heroList'
 import { useHeroListStore } from '@/store/heroList'
 import { HERO_IMAGE_URL } from '@/utils/constant'
 import { attributeList, roleList } from '@/utils/optionList'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 const useSearchForm = () => {
@@ -15,7 +15,7 @@ const useSearchForm = () => {
         watch,
         formState: { errors },
     } = useForm({
-        defaultValues: {
+        defaultValues: { //ถ้าไม่ได้กำหนด ในการ Render ครั้งแรกจะได้ค่าเป็น undefined
             keyword: '',
             rank: 0,
             attribute: 0,
@@ -111,11 +111,14 @@ const useSearchForm = () => {
                             + hero['7_pick'] + hero['8_pick'],
 
                         winRate: await winRate(hero, rank),
-                        pickValue: await pickValue(hero, rank)
+                        pickValue: await pickValue(hero, rank),
                     })
             }
             console.log('check2', heroList)
             setFetchHeroList({ data: heroList, loading: false, error: null })
+
+
+
             const data = filterHero(heroList, keyword, rank, attribute, role, sort)
             setHeroList({ data: data, loading: false, error: null })
         } else {
@@ -131,7 +134,7 @@ const useSearchForm = () => {
     const filterHero = (
         heroList: IHeroListUpdate[],
         keyword: string,
-        rank: number, //มีผลกับ win rate , pick
+        rank: number, //มีผลกับ Win Rate , pick
         attribute: number,
         role: number,
         sort: number
@@ -183,16 +186,16 @@ const useSearchForm = () => {
         switch (sortList[sort]) {
             case 'Name':
                 return data.sort((a, b) => a.localized_name > b.localized_name ? 1 : b.localized_name > a.localized_name ? -1 : 0)
-            case 'Win rate':
+            case 'Win Rate':
                 return data.sort((b, a) => a.winRate - b.winRate)
-            case 'Pick':
+            case 'Matches Played':
                 return data.sort((b, a) => a.pickValue - b.pickValue)
             default:
                 return data.sort((a, b) => a.localized_name > b.localized_name ? 1 : b.localized_name > a.localized_name ? -1 : 0)
         }
     }
 
-    //Calculate average win rate 
+    //Calculate average Win Rate 
     const calWinRateAverage = async (hero: any) => {
         return ((
             + hero['1_win'] + hero['2_win']
@@ -210,8 +213,8 @@ const useSearchForm = () => {
     }
 
     const winRate = async (hero: any, rank: number) => {
-        const meme: string = rankList[rank].name
-        switch (meme) {
+        const ranks: string = rankList[rank].name
+        switch (ranks) {
             case 'Herald':
                 return (hero['1_win'] / hero['1_pick']) * 100
             case 'Guardian':
@@ -235,8 +238,8 @@ const useSearchForm = () => {
         }
     }
     const pickValue = async (hero: any, rank: number) => {
-        const meme: string = rankList[rank].name
-        switch (meme) {
+        const ranks: string = rankList[rank].name
+        switch (ranks) {
             case 'Herald':
                 return hero['1_pick']
             case 'Guardian':
@@ -259,6 +262,8 @@ const useSearchForm = () => {
                 return await totalPick(hero)
         }
     }
+
+
 
     const totalPick = async (hero: any) => {
         return (

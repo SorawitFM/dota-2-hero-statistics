@@ -12,21 +12,20 @@ const HomePage = () => {
       <SearchForm />
 
       <div className="container text-center">
-        <div className="row">
-          <div className="col">
-            {hero.data?.map((item) => {
-              return (
+        <ol className="list-unstyled d-flex justify-content-center flex-wrap m-3 p-3">
+          {hero.data?.map((item, index) => (
+            <li key={index} className="m-3 p-3" style={{ width: '900px' }}>
+              <div className="col">
                 <HeroCard
                   image={item.img}
                   name={item.localized_name}
                   winRate={item.winRate}
                   pickValue={item.pickValue}
                 />
-
-              );
-            })}
-          </div>
-        </div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </div>
 

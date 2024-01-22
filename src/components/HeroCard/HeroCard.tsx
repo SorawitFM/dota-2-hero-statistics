@@ -8,23 +8,65 @@ const HeroCard = (props: any) => {
     const pickValue = props.pickValue
 
     return (
-        <div className="card mb-3" >
+        <div className="card mb-1 p-0" style={{ backgroundColor: '#303030', maxWidth: '850px', color: '#fff' }}>
             <div className="row g-0">
-                <div className="col-md-4">
-                    <img src={HERO_IMAGE_URL + image} className="img-fluid rounded-start" alt="..." />
+                <div className="col-md-5">
+                    <img src={HERO_IMAGE_URL + image} className="img-fluid rounded w-100" alt="..." />
                 </div>
-                <div className="col-md-8">
+                <div className="col-md-7">
                     <div className="card-body">
-                        <h5 className="card-title">{name}</h5>
-                        <h3 className="card-text">Win Rate: {winRate}</h3>
-                        <h3 className="card-text">Pick: {pickValue}</h3>
-                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                        <h3 className="card-title fw-bold fs-4">{name}</h3>
+                        <div className="container text-center mb-1">
+                            <div className="row align-items-center">
+                                <div className="col-4 text-center" style={{ color: '#FFD700', fontWeight: 'bolder' }}>
+                                    Win Rate:
+                                </div>
+                                <div className="col-8">
+                                    <div className="progress">
+                                        <div
+                                            className="progress-bar bg-warning"
+                                            role="progressbar"
+                                            style={{ width: `${winRate.toFixed(2)}%`, color: '#303030' }}
+                                            aria-valuenow={winRate.toFixed(2)}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                        >
+                                            {winRate.toFixed(2)} %
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="container text-center mb-1">
+                            <div className="row align-items-center">
+                                <div className="col-4 text-center" style={{ color: '#FFD700', fontWeight: 'bolder' }}>
+                                    Matches Played:
+                                </div>
+                                <div className="col-8">
+                                    <div className="progress">
+                                        <div
+                                            className="progress-bar bg-warning"
+                                            role="progressbar"
+                                            style={{
+                                                width: `${(Math.log(pickValue) ** 2.1 / Math.log(20))}%`,
+                                                borderRadius: '5px 0 0 5px', color: '#303030'
+                                            }}
+                                            aria-valuenow={(Math.log(pickValue) ** 2.1 / Math.log(20))}
+                                            aria-valuemin="0"
+                                            aria-valuemax="100"
+                                        >
+                                            {pickValue}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
+
 }
 
 export default HeroCard

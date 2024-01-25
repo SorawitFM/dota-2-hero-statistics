@@ -4,6 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './index.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from './page/home';
+import DetailPage from './page/detail';
 
 function App() {
 
@@ -15,6 +16,10 @@ function App() {
       element: (
         <HomePage />
       ),
+    },
+    {
+      path: "/detail/:name",
+      element: <DetailPage />,
     },
   ]);
 

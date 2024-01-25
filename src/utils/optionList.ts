@@ -56,23 +56,19 @@ export const sortList = ["Name", "Win Rate", "Matches Played"]
 
 export const attributeIcon = [
     {
-        name: "All Attribute",
-        icon: ""
-    },
-    {
         name: "Strength",
-        icon: "https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7a/Strength_attribute_symbol.png/revision/latest?cb=20180323111829"
+        icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_strength.png"
     },
     {
         name: "Agility",
-        icon: "https://static.wikia.nocookie.net/dota2_gamepedia/images/2/2d/Agility_attribute_symbol.png/revision/latest?cb=20180323111717"
+        icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_agility.png"
     },
     {
         name: "Intelligence",
-        icon: "https://static.wikia.nocookie.net/dota2_gamepedia/images/5/56/Intelligence_attribute_symbol.png/revision/latest?cb=20180323111753"
+        icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_intelligence.png"
     },
     {
         name: "Universal",
-        icon: "https://static.wikia.nocookie.net/dota2_gamepedia/images/1/1c/Universal_attribute_symbol.png/revision/latest/scale-to-width-down/20?cb=20230501030320"
+        icon: "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/icons/hero_universal.png"
     },
 ]

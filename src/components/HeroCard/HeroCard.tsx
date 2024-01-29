@@ -2,16 +2,26 @@ import { HERO_IMAGE_URL } from '@/utils/constant'
 import { attributeIcon } from '@/utils/optionList'
 import { Link } from 'react-router-dom'
 
+interface heroCard {
+    image: string
+    name: string
+    winRate: number
+    pickValue: number
+    attribute: string
+    role: string[]
+    index: number
+}
 
 
-const HeroCard = (props: any) => {
-    const image: string | undefined = props.image
-    const name: string = props.name
-    const winRate: number = props.winRate
-    const pickValue: number = props.pickValue
-    const attribute: string = props.attribute // all , str , agi , int
-    const role: string[] = props.role
-    const index: number = props.index + 1
+
+const HeroCard = (props: heroCard) => {
+    const image = props.image
+    const name = props.name
+    const winRate = props.winRate
+    const pickValue = props.pickValue
+    const attribute = props.attribute // all , str , agi , int
+    const role = props.role
+    const index = props.index + 1
 
     const iconImg = attributeIcon.find((item) => {
         if (attribute !== 'all') {

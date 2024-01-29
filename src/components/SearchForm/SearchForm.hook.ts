@@ -7,25 +7,59 @@ import { attributeList, roleList } from '@/utils/optionList'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
+
+
+const reset = async () => {
+    localStorage.clear()
+    window.location.reload()
+}
+
+
+
 const useSearchForm = () => {
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        formState: { errors },
-    } = useForm({
-        defaultValues: { //ถ้าไม่ได้กำหนด ในการ Render ครั้งแรกจะได้ค่าเป็น undefined
+    //กำหนดให้ Default ของ SearchForm เป็นค่าใน localstorage หรือค่าเริ่มต้น
+    const setDefaultValue = () => {
+        const storedData = localStorage.getItem('searchFormData')
+        const value = {
             keyword: '',
             rank: 0,
             attribute: 0,
             role: 0,
             sort: 0,
         }
+        if (storedData) {
+            const parsedData = JSON.parse(storedData)
+            if (parsedData.keyword) {
+                value.keyword = parsedData.keyword
+            }
+            if (parsedData.rank) {
+                value.rank = parsedData.rank
+            }
+            if (parsedData.attribute) {
+                value.attribute = parsedData.attribute
+            }
+            if (parsedData.role) {
+                value.role = parsedData.role
+            }
+            if (parsedData.sort) {
+                value.sort = parsedData.sort
+            }
+        }
+        return value
+    }
+    const {
+        register,
+        // handleSubmit,
+        watch,
+        //   formState: { errors },
+    } = useForm({ //ถ้าไม่ได้กำหนด default ในการ Render ครั้งแรกจะได้ค่าเป็น undefined
+        defaultValues:
+            setDefaultValue()
     })
 
-
     const { setFetchHeroList, fetchHero, setHeroList } = useHeroListStore()
+
 
     const keyword = watch('keyword')
     const rank = watch('rank')
@@ -33,37 +67,16 @@ const useSearchForm = () => {
     const role = watch('role')
     const sort = watch('sort')
 
+    useEffect(() => {
+        localStorage.setItem('searchFormData', JSON.stringify({
+            keyword,
+            rank,
+            attribute,
+            role,
+            sort,
+        }));
+    }, [keyword, rank, attribute, role, sort])
 
-    //เก็บข้อมูลลงใน Local Storage
-    /* const [keyword, setKeyword] = useState(watch('keyword'))
-     const [rank, setRank] = useState(watch('rank'))
-     const [attribute, setAttribute] = useState(watch('attribute'))
-     const [role, setRole] = useState(watch('role'))
-     const [sort, setSort] = useState(watch('sort'))
- 
-     useEffect(() => {
-         localStorage.setItem('searchFormData', JSON.stringify({
-             keyword,
-             rank,
-             attribute,
-             role,
-             sort,
-         }));
-     }, [keyword, rank, attribute, role, sort])
- 
-     useEffect(() => {
-         const storedData = localStorage.getItem('searchFormData')
-         if (storedData) {
-             const parsedData = JSON.parse(storedData);
-             // ตรวจสอบแต่ละ property และ update state ตามต้องการ
-             if (parsedData.keyword) setKeyword(parsedData.keyword)
-             if (parsedData.rank) setRank(parsedData.rank)
-             if (parsedData.attribute) setAttribute(parsedData.attribute)
-             if (parsedData.role) setRole(parsedData.role)
-             if (parsedData.sort) setSort(parsedData.sort)
-         }
-     }, []);
- */
 
 
     const callData = async () => { // ทำใหม่ เพราะ Concept ไม่เหมือนของ pokemon
@@ -116,8 +129,6 @@ const useSearchForm = () => {
             }
             console.log('check2', heroList)
             setFetchHeroList({ data: heroList, loading: false, error: null })
-
-
 
             const data = filterHero(heroList, keyword, rank, attribute, role, sort)
             setHeroList({ data: data, loading: false, error: null })
@@ -307,5 +318,5 @@ const useSearchForm = () => {
     }
 }
 
-export { useSearchForm }
+export { useSearchForm, reset }
 

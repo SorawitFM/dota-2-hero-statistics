@@ -1,3 +1,4 @@
+import Dashboard from '@/components/Dashboard/Dashboard'
 import { IHeroList } from '@/interface/heroList'
 import { heroListServie } from '@/service/heroList'
 import { HERO_IMAGE_URL } from '@/utils/constant'
@@ -19,13 +20,22 @@ const DetailPage = () => {
     const [atkMax, setAtkMax] = useState<number>(0)
     const [atkMin, setAtkMin] = useState<number>(0)
 
+    const [pick1, setPick1] = useState<number>(0)
+    const [pick2, setPick2] = useState<number>(0)
+    const [pick3, setPick3] = useState<number>(0)
+    const [pick4, setPick4] = useState<number>(0)
+    const [pick5, setPick5] = useState<number>(0)
+    const [pick6, setPick6] = useState<number>(0)
+    const [pick7, setPick7] = useState<number>(0)
+    const [pick8, setPick8] = useState<number>(0)
+
     const callData = async (name: string) => {
         const response = await heroListServie.getHeroList()
         console.log('Response = ', response)
         if (response.status === 200) {
             if (response.data) {
                 const thisHero: IHeroList[] = response.data?.filter((item) => {
-                    return item.localized_name.toLowerCase().includes(name.toLowerCase())
+                    return item.localized_name.toLowerCase() === name.toLowerCase()
                 })
                 if (thisHero.length > 0) {
                     setHero({ data: thisHero, loading: true, error: null })
@@ -43,7 +53,7 @@ const DetailPage = () => {
 
     console.log('thisHero = ', hero)
 
-
+    //find icon
     const iconImg = attributeIcon.find((item) => {
         if (hero.data && hero.data.length > 0)
             if (hero.data[0].primary_attr !== 'all') {
@@ -93,6 +103,29 @@ const DetailPage = () => {
         }
     }
 
+    //คำนวนค่า Total pick ของแต่ละ Ranks
+    const calculatePick = async () => {
+        const response = await heroListServie.getHeroList()
+        if (response.status === 200) {
+            if (response.data) {
+                const responseResult = response.data
+                let sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0, sum5 = 0, sum6 = 0, sum7 = 0, sum8 = 0
+                for (let i = 0; i < responseResult.length; i++) {
+                    sum1 += responseResult[i]['1_pick']
+                    sum2 += responseResult[i]['2_pick']
+                    sum3 += responseResult[i]['3_pick']
+                    sum4 += responseResult[i]['4_pick']
+                    sum5 += responseResult[i]['5_pick']
+                    sum6 += responseResult[i]['6_pick']
+                    sum7 += responseResult[i]['7_pick']
+                    sum8 += responseResult[i]['8_pick']
+                }
+                setPick1(sum1), setPick2(sum2), setPick3(sum3), setPick4(sum4)
+                setPick5(sum5), setPick6(sum6), setPick7(sum7), setPick8(sum8)
+            }
+        }
+    }
+
 
     useEffect(() => {
         if (name) callData(name)
@@ -102,34 +135,36 @@ const DetailPage = () => {
     useEffect(() => {
         calAtkMin()
         calAtkMax()
+        calculatePick()
     }, [hero])
 
 
 
     return (
-        <div style={{ fontFamily: 'Georgia, serif' }}>
+        <div style={{ fontFamily: 'Georgia, serif', backgroundImage: 'url("https://images.unsplash.com/photo-1567360425618-1594206637d2?q=80&w=1768&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', backgroundSize: 'cover' }}>
             {hero.data && hero.data.length > 0 ? (
-                <div className='d-flex justify-content-center' style={{ minHeight: '100vh' }}>
-                    <div className='col-4 p-3' style={{ backgroundColor: 'rgba(250, 0, 0, 0.5)', minWidth: '350px' }}>
-                        <div className='row-4 d-flex justify-content-center rounded p-3'>
-                            <img src={HERO_IMAGE_URL + hero.data[0].img} alt="" className='img-fluid rounded border border-5 border-dark' />
+                <div className='d-flex justify-content-spacebetween' style={{ minHeight: '100vh' }}>
+                    {/* Detail ของ Hero */}
+                    <div className='col-5 p-4 rounded  m-3' style={{ minWidth: '350px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}>
+                        <div className='row-4 d-flex justify-content-center rounded p-3 pt-4'>
+                            <img src={HERO_IMAGE_URL + hero.data[0].img} alt="" className='img-fluid rounded border border-2 border-black' />
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4  text-danger'>
                                 NAME
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 {hero.data[0].localized_name.toUpperCase()}
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4  text-danger  '>
                                 ATTRIBUTE
                             </div>
                             <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button className="btn btn-secondary dropdown-toggle bg-light-subtle text-dark" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src={icon} alt="" style={{ width: '1.5em' }} />
                                     {hero.data[0].primary_attr === 'all' ? ' UNIVERSAL ' :
                                         hero.data[0].primary_attr === 'str' ? ' STRENGTH ' :
@@ -149,11 +184,11 @@ const DetailPage = () => {
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4  text-danger'>
                                 ATTACK TYPE
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 {hero.data[0].attack_type === 'Melee' ?
                                     (
                                         <>
@@ -176,11 +211,11 @@ const DetailPage = () => {
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4 text-danger'>
                                 ROLES
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 <div >
                                     {hero?.data[0]?.roles.map((item) => {
                                         return <div >{item.toUpperCase()}</div>
@@ -189,11 +224,11 @@ const DetailPage = () => {
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4 text-danger'>
                                 ATTACK
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 <div>
                                     <img className="heropage_SwordIcon_FY7TW" style={{ width: '1.5em' }} src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_damage.png" />
                                     {' ' + atkMin.toFixed(0) + '-' + atkMax.toFixed(0)}
@@ -209,31 +244,31 @@ const DetailPage = () => {
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4  text-danger'>
                                 DEFENSE
                             </div>
-                            <div className='col-8'> {/*สูตรคำนวนจาก dota2.fandom.com*/}
+                            <div className='col-8 text-white'> {/*สูตรคำนวนจาก dota2.fandom.com*/}
                                 <img className="heropage_SwordIcon_FY7TW" style={{ width: '1.5em' }} src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_armor.png" />
                                 {' ' + (hero.data[0].base_armor + ((hero.data[0].base_agi) / 6)).toFixed(1)}
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4 text-danger'>
                                 VISION
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 <img className="heropage_SwordIcon_FY7TW" style={{ width: '1.5em' }} src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_vision.png" />
                                 {' ' + hero.data[0].day_vision + '/' + hero.data[0].night_vision}
                             </div>
                         </div>
 
-                        <div className='row-8 d-flex bg-success p-2'>
-                            <div className='col-4 bg-info text-white'>
+                        <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
+                            <div className='col-4 text-danger'>
                                 MOVE SPEED
                             </div>
-                            <div className='col-8'>
+                            <div className='col-8 text-white'>
                                 <img className="heropage_SwordIcon_FY7TW" style={{ width: '1.5em' }} src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react//heroes/stats/icon_movement_speed.png" />
                                 {' ' + hero.data[0].move_speed}
                             </div>
@@ -243,17 +278,25 @@ const DetailPage = () => {
 
                     </div>
 
-
-                    <div className='col-8 h-100 bg-warning' style={{ minHeight: '100vh' }} >
+                    {/* {Dashboard+Youtube} */}
+                    <div className='col-7 h-100' style={{ minHeight: '100vh', width: '55%' }} >
                         {/* {Dashboard} */}
-                        <div className='bg-success h-100 row-8'>
+                        <div className=' h-100 row-8'>
                             <div id="carouselExample" className="carousel slide">
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
-                                        COMPONENT 1
+                                        <Dashboard
+                                            totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
+                                            totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
+                                            thisHero={hero.data[0]} mode={'pick'}
+                                        />
                                     </div>
                                     <div className="carousel-item">
-                                        COMPONENT 2
+                                        <Dashboard
+                                            totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
+                                            totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
+                                            thisHero={hero.data[0]} mode={'win'}
+                                        />
                                     </div>
                                 </div>
                                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
@@ -269,6 +312,7 @@ const DetailPage = () => {
 
                         <div className='bg-info h-100 row-4'>
                             YOUTUBE API
+
                         </div>
 
                     </div>

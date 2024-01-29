@@ -1,4 +1,4 @@
-import { IHeroList, IHeroListUpdate } from '@/interface/heroList'
+import { IHeroListUpdate } from '@/interface/heroList'
 import { create } from 'zustand'
 
 const initStore = { //ค่าเริ่มต้น
@@ -12,12 +12,6 @@ const initStore = { //ค่าเริ่มต้น
         loading: false,
         error: null
     }
-}
-
-type heroType = {
-    data: IHeroList[],
-    loading: boolean,
-    error: null | any
 }
 
 type heroTypeUpdate = {

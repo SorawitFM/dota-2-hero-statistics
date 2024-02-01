@@ -1,11 +1,13 @@
 import Dashboard from '@/components/Dashboard/Dashboard'
+import ShowVideo from '@/components/ShowVideo/ShowVideo'
 import { IHeroList } from '@/interface/heroList'
 import { heroListServie } from '@/service/heroList'
 import { HERO_IMAGE_URL } from '@/utils/constant'
 import { attributeIcon } from '@/utils/optionList'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
+import { heroVideoService } from '@/service/heroVideo'
+import { IHeroVideo } from '@/interface/heroVideo'
 
 type heroType = {
     data: IHeroList[] | undefined
@@ -29,6 +31,7 @@ const DetailPage = () => {
     const [pick7, setPick7] = useState<number>(0)
     const [pick8, setPick8] = useState<number>(0)
 
+    //เรียก Data ของ Hero
     const callData = async (name: string) => {
         const response = await heroListServie.getHeroList()
         console.log('Response = ', response)
@@ -47,11 +50,7 @@ const DetailPage = () => {
         } else {
             setHero({ data: undefined, loading: true, error: response.error })
         }
-        console.log('Hero = ', hero)
     }
-
-
-    console.log('thisHero = ', hero)
 
     //find icon
     const iconImg = attributeIcon.find((item) => {
@@ -126,17 +125,48 @@ const DetailPage = () => {
         }
     }
 
-
+    //เรียก Data 
     useEffect(() => {
         if (name) callData(name)
-
+        if (name) callVideo(name)
     }, [name])
 
+    //สั่งคำนวนข้อมูล
     useEffect(() => {
         calAtkMin()
         calAtkMax()
         calculatePick()
     }, [hero])
+
+
+    //ส่วนของการเรียกข้อมูล Video
+    // const { heroVideo, setHeroVideo } = useHeroVideoStore()
+    interface HeroVideo {
+        data: IHeroVideo[],
+        loading: boolean,
+        error: null | any
+    }
+
+    const [heroVideo, setHeroVideo] = useState<HeroVideo>({ data: [], loading: true, error: null })
+
+
+
+    const callVideo = async (name: string) => {
+        if (name) {
+
+            const responseList = await heroVideoService.getHeroVideo(name);
+
+            if (responseList.status === 200 && responseList.data) {
+                const videoList = responseList.data
+                setHeroVideo({ data: videoList, loading: false, error: null })
+            } else {
+                setHeroVideo({ data: [], loading: false, error: responseList.error })
+            }
+        }
+        console.log('check Video', heroVideo)
+    }
+
+
 
 
 
@@ -312,6 +342,16 @@ const DetailPage = () => {
 
                         <div className='bg-info h-100 row-4'>
                             YOUTUBE API
+                            {/* <ul>
+                                {heroVideo.data.items.map((item, index) => (
+                                    <li key={index}>
+                                        <ShowVideo image={item.snippet.thumbnails.medium.url} title={item.snippet.title} />
+                                    </li>
+                                ))}
+                            </ul> */}
+
+
+
 
                         </div>
 

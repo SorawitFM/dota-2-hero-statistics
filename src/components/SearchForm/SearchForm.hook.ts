@@ -80,11 +80,6 @@ const useSearchForm = () => {
 
 
     const callData = async () => { // ทำใหม่ เพราะ Concept ไม่เหมือนของ pokemon
-        console.log('check keyword', keyword)
-        console.log('check rank', rank)
-        console.log('check attribute', attribute)
-        console.log('check role', role)
-        console.log('check sort', sort)
         const responseList = await heroListServie.getHeroList()
         console.log('check0', responseList)
         if (responseList.status === 200) {

@@ -15,7 +15,6 @@ type heroType = {
     error: null | any
 }
 
-
 const DetailPage = () => {
     const { name } = useParams()
     const [hero, setHero] = useState<heroType>({ data: [], loading: true, error: null })
@@ -34,7 +33,6 @@ const DetailPage = () => {
     //เรียก Data ของ Hero
     const callData = async (name: string) => {
         const response = await heroListServie.getHeroList()
-        console.log('Response = ', response)
         if (response.status === 200) {
             if (response.data) {
                 const thisHero: IHeroList[] = response.data?.filter((item) => {
@@ -45,7 +43,6 @@ const DetailPage = () => {
                 } else {
                     setHero({ data: [], loading: true, error: null })
                 }
-
             }
         } else {
             setHero({ data: undefined, loading: true, error: response.error })
@@ -138,7 +135,6 @@ const DetailPage = () => {
         calculatePick()
     }, [hero])
 
-
     //ส่วนของการเรียกข้อมูล Video
     // const { heroVideo, setHeroVideo } = useHeroVideoStore()
     interface HeroVideo {
@@ -149,13 +145,9 @@ const DetailPage = () => {
 
     const [heroVideo, setHeroVideo] = useState<HeroVideo>({ data: [], loading: true, error: null })
 
-
-
     const callVideo = async (name: string) => {
         if (name) {
-
             const responseList = await heroVideoService.getHeroVideo(name);
-
             if (responseList.status === 200 && responseList.data) {
                 const videoList = responseList.data
                 setHeroVideo({ data: videoList, loading: false, error: null })
@@ -163,12 +155,8 @@ const DetailPage = () => {
                 setHeroVideo({ data: [], loading: false, error: responseList.error })
             }
         }
-        console.log('check Video', heroVideo)
+        console.log('vEE', heroVideo)
     }
-
-
-
-
 
     return (
         <div style={{ fontFamily: 'Georgia, serif', backgroundImage: 'url("https://images.unsplash.com/photo-1567360425618-1594206637d2?q=80&w=1768&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', backgroundSize: 'cover' }}>
@@ -179,7 +167,6 @@ const DetailPage = () => {
                         <div className='row-4 d-flex justify-content-center rounded p-3 pt-4'>
                             <img src={HERO_IMAGE_URL + hero.data[0].img} alt="" className='img-fluid rounded border border-2 border-black' />
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4  text-danger'>
                                 NAME
@@ -188,7 +175,6 @@ const DetailPage = () => {
                                 {hero.data[0].localized_name.toUpperCase()}
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4  text-danger  '>
                                 ATTRIBUTE
@@ -213,7 +199,6 @@ const DetailPage = () => {
                                 </ul>
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4  text-danger'>
                                 ATTACK TYPE
@@ -240,7 +225,6 @@ const DetailPage = () => {
                                 }
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4 text-danger'>
                                 ROLES
@@ -248,12 +232,11 @@ const DetailPage = () => {
                             <div className='col-8 text-white'>
                                 <div >
                                     {hero?.data[0]?.roles.map((item) => {
-                                        return <div >{item.toUpperCase()}</div>
+                                        return <div key={item.toUpperCase()}>{item.toUpperCase()}</div>
                                     })}
                                 </div>
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4 text-danger'>
                                 ATTACK
@@ -273,7 +256,6 @@ const DetailPage = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4  text-danger'>
                                 DEFENSE
@@ -283,7 +265,6 @@ const DetailPage = () => {
                                 {' ' + (hero.data[0].base_armor + ((hero.data[0].base_agi) / 6)).toFixed(1)}
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4 text-danger'>
                                 VISION
@@ -293,7 +274,6 @@ const DetailPage = () => {
                                 {' ' + hero.data[0].day_vision + '/' + hero.data[0].night_vision}
                             </div>
                         </div>
-
                         <div className='row-8 d-flex  p-2 m-1 border border-1 rounded' style={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
                             <div className='col-4 text-danger'>
                                 MOVE SPEED
@@ -303,11 +283,7 @@ const DetailPage = () => {
                                 {' ' + hero.data[0].move_speed}
                             </div>
                         </div>
-
-
-
                     </div>
-
                     {/* {Dashboard+Youtube} */}
                     <div className='col-7 h-100' style={{ minHeight: '100vh', width: '55%' }} >
                         {/* {Dashboard} */}
@@ -339,38 +315,26 @@ const DetailPage = () => {
                                 </button>
                             </div>
                         </div>
-
-                        <div className='bg-info h-100 row-4'>
-                            YOUTUBE API
-                            {/* <ul>
-                                {heroVideo.data.items.map((item, index) => (
-                                    <li key={index}>
-                                        <ShowVideo image={item.snippet.thumbnails.medium.url} title={item.snippet.title} />
-                                    </li>
-                                ))}
-                            </ul> */}
-
-
-
-
+                        <div className=' h-100 row-4'>
+                            {/* YOUTUBE API */}
+                            <ul className=" d-flex justify-content-center flex-wrap m-3 p-3">
+                                {heroVideo.data.items.map((item, index) => {
+                                    console.log(item.snippet.title)
+                                    return (
+                                        <li key={item.etag} className="p-1" >
+                                            <ShowVideo image={item.snippet.thumbnails.medium.url} title={item.snippet.title} vId={item.id.videoId} />
+                                        </li>
+                                    )
+                                })}
+                            </ul>
                         </div>
-
                     </div>
-
                 </div>
-
-
-
-
-
             ) : (
                 <div>Loading...</div>
             )}
-
         </div>
-
     );
-
 }
 
 export default DetailPage

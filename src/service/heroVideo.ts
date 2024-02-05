@@ -13,7 +13,7 @@ export const heroVideoService = {
             const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
                 params: {
                     part: 'snippet',
-                    maxResults: 6,
+                    maxResults: 4,
                     key: 'AIzaSyAO21nHmZIIH-6Ikz5JGnUSzG7ipead3jU',
                     // q: name + 'Dota 2'
                     channelID: 'UC1YCxISkweN5vLsOJ0zElZQ'

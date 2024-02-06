@@ -5,6 +5,7 @@ import './index.scss'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import HomePage from './page/home';
 import DetailPage from './page/detail';
+import StatisticsPage from './page/statistics';
 
 function App() {
 
@@ -20,6 +21,10 @@ function App() {
     {
       path: "/detail/:name",
       element: <DetailPage />,
+    },
+    {
+      path: "/statistic",
+      element: <StatisticsPage />,
     },
   ]);
 

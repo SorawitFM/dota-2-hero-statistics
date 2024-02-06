@@ -37,7 +37,7 @@ const Dashboard = (props: any) => {
 
 
     return (
-        <div>
+        <div >
             {mode === 'pick' ? (
                 <div className='p-3' style={{ color: 'white' }}>
 
@@ -46,8 +46,8 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center'>
-                        <div className='col-2'>Herald</div>
-                        <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
+                        <div className='col-2' style={{ minWidth: '70px' }}>Herald</div>
+                        <div className="col-10  progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['1_pick'] / totalPick[0]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['1_pick'] / totalPick[0]) * 100).toFixed(2)}
                             </div>
@@ -55,7 +55,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Guardian</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Guardian</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['2_pick'] / totalPick[1]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['2_pick'] / totalPick[1]) * 100).toFixed(2)}
@@ -64,7 +64,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Crusader</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Crusader</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['3_pick'] / totalPick[2]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['3_pick'] / totalPick[2]) * 100).toFixed(2)}
@@ -73,7 +73,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Archon</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Archon</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['4_pick'] / totalPick[3]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['4_pick'] / totalPick[3]) * 100).toFixed(2)}
@@ -82,7 +82,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Legend</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Legend</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['5_pick'] / totalPick[4]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['5_pick'] / totalPick[4]) * 100).toFixed(2)}
@@ -91,7 +91,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Ancient</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Ancient</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['6_pick'] / totalPick[5]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['6_pick'] / totalPick[5]) * 100).toFixed(2)}
@@ -100,7 +100,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Divine</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Divine</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['7_pick'] / totalPick[6]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['7_pick'] / totalPick[6]) * 100).toFixed(2)}
@@ -109,7 +109,7 @@ const Dashboard = (props: any) => {
                     </div>
 
                     <div className='d-flex justify-content-center align-items-center '>
-                        <div className='col-2'>Immortal</div>
+                        <div className='col-2' style={{ minWidth: '70px' }}>Immortal</div>
                         <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                             <div className="progress-bar" style={{ width: `${Math.sqrt(thisHero['8_pick'] / totalPick[7]) * scale}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                 {((thisHero['8_pick'] / totalPick[7]) * 100).toFixed(2)}
@@ -130,7 +130,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center '>
-                            <div className='col-2'>Herald</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Herald</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate1)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate1.toFixed(2)}
@@ -139,7 +139,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Guardian</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Guardian</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate2)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate2.toFixed(2)}
@@ -148,7 +148,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Crusader</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Crusader</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate3)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate3.toFixed(2)}
@@ -157,7 +157,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Archon</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Archon</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate4)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate4.toFixed(2)}
@@ -166,7 +166,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Legend</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Legend</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate5)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate5.toFixed(2)}
@@ -175,7 +175,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Ancient</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Ancient</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate6)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate6.toFixed(2)}
@@ -184,7 +184,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Divine</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Divine</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate7)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate7.toFixed(2)}
@@ -193,7 +193,7 @@ const Dashboard = (props: any) => {
                         </div>
 
                         <div className='d-flex justify-content-center align-items-center'>
-                            <div className='col-2'>Immortal</div>
+                            <div className='col-2' style={{ minWidth: '70px' }}>Immortal</div>
                             <div className="col-10 progress" role="progressbar" aria-label="Basic example" >
                                 <div className="progress-bar" style={{ width: `${fixBellCurve(winRate8)}%`, backgroundColor: 'rgba(250, 0, 0, 1)' }}>
                                     {winRate8.toFixed(2)}

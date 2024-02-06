@@ -1,6 +1,7 @@
 import { HERO_IMAGE_URL } from '@/utils/constant'
 import { attributeIcon } from '@/utils/optionList'
 import { Link } from 'react-router-dom'
+import './HeroCard.css'
 
 interface heroCard {
     image: string
@@ -36,13 +37,15 @@ const HeroCard = (props: heroCard) => {
 
 
     return (
-        <div className="card mb-1 p-0" style={{ backgroundColor: 'rgba(48, 48, 48, 0.7)', maxWidth: '850px', color: '#fff', fontFamily: 'Georgia, serif', position: 'relative' }}>
+        <div className="card" style={{ backgroundColor: 'rgba(48, 48, 48, 0.7)', maxWidth: '850px', color: '#fff', fontFamily: 'Georgia, serif', position: 'relative' }}>
             <div className="row g-0">
                 <div className="col-md-5 d-flex" >
                     <Link to={`/detail/${name}`} className='w-100 col align-items-center'>
-                        <img src={HERO_IMAGE_URL + image}
-                            className="img-fluid rounded w-100 col align-items-center"
-                            alt="..." />
+                        <img
+                            src={HERO_IMAGE_URL + image}
+                            className="img-fluid rounded w-100 col align-items-center zoomable-image"
+                            alt="..."
+                        />
                     </Link>
                 </div>
                 <div className="col-md-7">
@@ -97,7 +100,7 @@ const HeroCard = (props: heroCard) => {
                                 </div>
                                 <div className="col-md-8 row-sm  d-flex flex-wrap justify-content-center">
                                     {role.map((item) => {
-                                        return <div className='p-1 align-items-center' style={{ color: 'rgba(250, 0, 0, 0.7)', fontFamily: 'Georgia, serif' }}>{item}</div>
+                                        return <div className='pe-2 align-items-center' style={{ color: 'rgba(250, 0, 0, 0.7)', fontFamily: 'Georgia, serif' }}>{item}</div>
                                     })}
                                 </div>
                             </div>

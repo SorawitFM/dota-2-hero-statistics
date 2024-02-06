@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { heroVideoService } from '@/service/heroVideo'
 import { IHeroVideo } from '@/interface/heroVideo'
+import MyToast from '@/components/MyToast/MyToast'
+import NavBar from '@/components/NavBar/NavBar'
 
 type heroType = {
     data: IHeroList[] | undefined
@@ -160,10 +162,11 @@ const DetailPage = () => {
 
     return (
         <div style={{ fontFamily: 'Georgia, serif', backgroundImage: 'url("https://images.unsplash.com/photo-1567360425618-1594206637d2?q=80&w=1768&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")', backgroundSize: 'cover' }}>
+            <NavBar />
             {hero.data && hero.data.length > 0 ? (
-                <div className='d-flex justify-content-spacebetween' style={{ minHeight: '100vh' }}>
+                <div className='d-flex flex-wrap justify-content-center' style={{ minHeight: '100vh' }}>
                     {/* Detail ของ Hero */}
-                    <div className='col-5 p-4 rounded  m-3' style={{ minWidth: '350px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}>
+                    <div className='col-md-4 row-sm rounded p-3' style={{ minWidth: '350px', backgroundSize: 'cover', backgroundImage: 'url("https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}>
                         <div className='row-4 d-flex justify-content-center rounded p-3 pt-4'>
                             <img src={HERO_IMAGE_URL + hero.data[0].img} alt="" className='img-fluid rounded border border-2 border-black' />
                         </div>
@@ -285,49 +288,57 @@ const DetailPage = () => {
                         </div>
                     </div>
                     {/* {Dashboard+Youtube} */}
-                    <div className='col-7 h-100' style={{ minHeight: '100vh', width: '55%' }} >
+                    <div className='col-md-8 row-sm ' >
                         {/* {Dashboard} */}
-                        <div className=' h-100 row-8'>
-                            <div id="carouselExample" className="carousel slide">
-                                <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                        <Dashboard
-                                            totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
-                                            totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
-                                            thisHero={hero.data[0]} mode={'pick'}
-                                        />
+                        <div className='container'>
+                            <div className=' ' >
+                                <div id="carouselExample" className="carousel slide">
+                                    <div className="carousel-inner">
+                                        <div className="carousel-item active">
+                                            <Dashboard
+                                                totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
+                                                totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
+                                                thisHero={hero.data[0]} mode={'pick'}
+                                            />
+                                        </div>
+                                        <div className="carousel-item">
+                                            <Dashboard
+                                                totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
+                                                totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
+                                                thisHero={hero.data[0]} mode={'win'}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="carousel-item">
-                                        <Dashboard
-                                            totalPick1={pick1} totalPick2={pick2} totalPick3={pick3} totalPick4={pick4}
-                                            totalPick5={pick5} totalPick6={pick6} totalPick7={pick7} totalPick8={pick8}
-                                            thisHero={hero.data[0]} mode={'win'}
-                                        />
-                                    </div>
+                                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Previous</span>
+                                    </button>
+                                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                                <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Previous</span>
-                                </button>
-                                <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span className="visually-hidden">Next</span>
-                                </button>
+                            </div>
+                            <div className=''>
+                                {/* YOUTUBE API */}
+                                {!heroVideo.error && (
+                                    <ul className=" d-flex justify-content-center flex-wrap m-3 p-3">
+                                        {heroVideo.data.items.map((item) => {
+                                            console.log(item.snippet.title)
+                                            return (
+                                                <li key={item.etag} className="p-1" >
+                                                    <ShowVideo image={item.snippet.thumbnails.medium.url} title={item.snippet.title} vId={item.id.videoId} />
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                )}
+                                {heroVideo.error && (
+                                    <MyToast mode={'noYoutube'} />
+                                )}
                             </div>
                         </div>
-                        <div className=' h-100 row-4'>
-                            {/* YOUTUBE API */}
-                            <ul className=" d-flex justify-content-center flex-wrap m-3 p-3">
-                                {heroVideo.data.items.map((item, index) => {
-                                    console.log(item.snippet.title)
-                                    return (
-                                        <li key={item.etag} className="p-1" >
-                                            <ShowVideo image={item.snippet.thumbnails.medium.url} title={item.snippet.title} vId={item.id.videoId} />
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
             ) : (

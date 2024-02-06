@@ -16,7 +16,7 @@ export const heroVideoService = {
                     maxResults: 4,
                     key: 'AIzaSyAO21nHmZIIH-6Ikz5JGnUSzG7ipead3jU',
                     // q: name + 'Dota 2'
-                    channelID: 'UC1YCxISkweN5vLsOJ0zElZQ'
+                    channelId: 'UC1YCxISkweN5vLsOJ0zElZQ'
                 }
             });
 

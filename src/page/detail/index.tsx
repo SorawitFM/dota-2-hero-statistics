@@ -149,7 +149,8 @@ const DetailPage = () => {
 
     const callVideo = async (name: string) => {
         if (name) {
-            const responseList = await heroVideoService.getHeroVideo(name);
+            const responseList = await heroVideoService.getHeroVideo(name)
+            setHeroVideo({ data: [], loading: true, error: null })
             if (responseList.status === 200 && responseList.data) {
                 const videoList = responseList.data
                 setHeroVideo({ data: videoList, loading: false, error: null })
@@ -321,7 +322,10 @@ const DetailPage = () => {
                             </div>
                             <div className=''>
                                 {/* YOUTUBE API */}
-                                {!heroVideo.error && (
+                                {heroVideo.loading && (
+                                    <MyToast mode={'loading'} />
+                                )}
+                                {!heroVideo.error && !heroVideo.loading && (
                                     <ul className=" d-flex justify-content-center flex-wrap m-3 p-3">
                                         {heroVideo.data.items.map((item) => {
                                             console.log(item.snippet.title)

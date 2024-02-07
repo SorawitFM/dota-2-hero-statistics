@@ -6,10 +6,10 @@ const Intro = () => {
         <div id="carouselExampleFade" className="carousel slide carousel-fade">
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <div className="p-1 ms-5 me-5 p-md-5 mb-4 rounded text-body-emphasis" style={{ backgroundImage: 'url("/images/wp2532627-dota-2-hd-wallpapers.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '700px' }}>
+                    <div className="ms-5 me-5 p-md-5 mb-4 rounded text-body-emphasis" style={{ backgroundImage: 'url("/images/wp2532627-dota-2-hd-wallpapers.jpg")', backgroundSize: 'cover', backgroundPosition: 'center', minHeight: '700px' }}>
                         <div className="col-lg-6 py-2 p-5">
                             <h1 className="display-6 fst-italic text-light">JOIN THE BATTLE</h1>
-                            <a href="https://store.steampowered.com/app/570/Dota_2/"><button type="button" className="btn btn-outline-light">PLAY NOW</button></a>
+                            <a href="https://store.steampowered.com/app/570/Dota_2/" target="blank"><button type="button" className="btn btn-outline-light" >PLAY NOW</button></a>
                         </div>
                     </div>
                 </div>

@@ -13,10 +13,10 @@ export const heroVideoService = {
             const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
                 params: {
                     part: 'snippet',
-                    maxResults: 4,
+                    maxResults: 6,
                     key: 'AIzaSyAO21nHmZIIH-6Ikz5JGnUSzG7ipead3jU',
-                    // q: name + 'Dota 2'
-                    channelId: 'UC1YCxISkweN5vLsOJ0zElZQ'
+                    q: name + 'Dota 2',
+                    // channelId: 'UC1YCxISkweN5vLsOJ0zElZQ'
                 }
             });
 

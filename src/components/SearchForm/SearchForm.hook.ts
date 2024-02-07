@@ -14,6 +14,10 @@ const reset = async () => {
     window.location.reload()
 }
 
+const searchKeyword = async () => {
+
+}
+
 
 
 const useSearchForm = () => {
@@ -83,10 +87,11 @@ const useSearchForm = () => {
         const responseList = await heroListServie.getHeroList()
         console.log('check0', responseList)
         if (responseList.status === 200) {
+            setFetchHeroList({ data: [], loading: true, error: null })
             const responseResult = responseList.data || []
             console.log('check1', responseResult)
             const heroList = []
-            setFetchHeroList({ data: [], loading: true, error: null })
+
 
 
             for (const hero of responseResult) {  //วน loop เพื่อสร้าง heroList

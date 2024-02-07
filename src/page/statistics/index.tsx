@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 
 
 const StatisticsPage = () => {
-  const { hero } = useHeroListStore();
+  const { hero, fetchHero } = useHeroListStore();
   console.log('check3', hero.data);
 
   const [showToast, setShowToast] = useState(false);
